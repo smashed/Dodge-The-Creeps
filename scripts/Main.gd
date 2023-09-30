@@ -3,6 +3,9 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 
+func _ready():
+	$MobTimer.start()
+	
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
@@ -24,6 +27,8 @@ func new_game():
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
+	
+	mob.name = "mob"
 
 	# Choose a random location on Path2D.
 	var mob_spawn_location = get_node(^"MobPath/MobSpawnLocation")
